@@ -121,14 +121,14 @@ router.get('/users/:id', async (req, res) => {
         const profile = await Profile.findOne({ user: req.params.id }).populate('user', ['name', 'avatar']);
 
         if (!profile) {
-            return res.status(400)
+            return res.status(404)
                 .json({ msg: 'Profile not found' });
         }
         res.json(profile);
     } catch (error) {
         console.error(error.message);
         if (error.kind == 'ObjectId') {
-            return res.status(400)
+            return res.status(404)
                 .json({ msg: 'Profile not found' });
         }
         res.status(500).send('Server error');
@@ -329,13 +329,13 @@ router.get('/github/:username', (req, res) => {
         const options = {
             uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubSecret')}`,
             method: 'GET',
-            headers: { 'user-agent':'node.js' }
+            headers: { 'user-agent': 'node.js' }
         };
 
         request(options, (error, response, body) => {
-            if(error) console.error(error)
+            if (error) console.error(error)
 
-            if(response.statusCode !== 200) {
+            if (response.statusCode !== 200) {
                 return res.status(404).json({ msg: 'No Github profile found' });
             }
 
