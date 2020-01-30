@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -24,7 +25,11 @@ const Register = ({ setAlert }) => {
         if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else {
-            setAlert('Success', 'success');
+            register({
+                name,
+                email,
+                password
+            });
         };
     };
 
@@ -40,7 +45,7 @@ const Register = ({ setAlert }) => {
                         onChange={e => onChange(e)}
                         placeholder="Name"
                         name="name"
-                        required
+                    // required
                     />
                 </div>
                 <div className="form-group">
@@ -50,7 +55,7 @@ const Register = ({ setAlert }) => {
                         onChange={e => onChange(e)}
                         placeholder="Email Address"
                         name="email"
-                        required
+                    // required
                     />
                     <small className="form-text"
                     >This site uses Gravatar so if you want a profile image, use a
@@ -63,7 +68,7 @@ const Register = ({ setAlert }) => {
                         onChange={e => onChange(e)}
                         placeholder="Password"
                         name="password"
-                        minLength="6"
+                    // minLength="6"
                     />
                 </div>
                 <div className="form-group">
@@ -73,7 +78,7 @@ const Register = ({ setAlert }) => {
                         onChange={e => onChange(e)}
                         placeholder="Confirm Password"
                         name="password2"
-                        minLength="6"
+                    // minLength="6"
                     />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Register" />
@@ -86,7 +91,8 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register)
+export default connect(null, { setAlert, register })(Register)
