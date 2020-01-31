@@ -1,6 +1,6 @@
 {
     "mongoURI": "mongodb+srv://juandiaz:entwistle!1984@cluster0-olwve.mongodb.net/test?retryWrites=true&w=majority",
     "jwtSecret": "devconnectortoken2020",
-    "githubClientId":"a1591248063b2908a4ee",
-    "githubSecret":"453acb5827cf9be7b6c3362d7f3457b15285ebe8"
+    "githubClientId": "a1591248063b2908a4ee",
+    "githubSecret": "453acb5827cf9be7b6c3362d7f3457b15285ebe8"
 }
