@@ -114,12 +114,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-// @route   GET api/profile/user/:id
+// @route   GET api/profile/user/:userId
 // @des     Get profile by user id
 // @access  Public
-router.get('/users/:id', async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
     try {
-        const profile = await Profile.findOne({ user: req.params.id }).populate('user', ['name', 'avatar']);
+        const profile = await Profile.findOne({ user: req.params.userId }).populate('user', ['name', 'avatar']);
 
         if (!profile) {
             return res.status(404)
